@@ -1,0 +1,2183 @@
+{
+    "annotations": {
+      "list": [
+        {
+          "builtIn": 1,
+          "datasource": {
+            "type": "grafana",
+            "uid": "-- Grafana --"
+          },
+          "enable": true,
+          "hide": true,
+          "iconColor": "rgba(0, 211, 255, 1)",
+          "name": "Annotations & Alerts",
+          "type": "dashboard"
+        }
+      ]
+    },
+    "editable": true,
+    "fiscalYearStartMonth": 0,
+    "graphTooltip": 0,
+    "id": 2,
+    "links": [],
+    "liveNow": false,
+    "panels": [
+      {
+        "collapsed": false,
+        "gridPos": {
+          "h": 1,
+          "w": 24,
+          "x": 0,
+          "y": 0
+        },
+        "id": 25,
+        "panels": [],
+        "title": "Metrics Sumary",
+        "type": "row"
+      },
+      {
+        "datasource": {
+          "type": "influxdb",
+          "uid": "b69f7d96-d8df-4135-a28a-22f5b65a6104"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 30
+                }
+              ]
+            },
+            "unit": "celsius"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 6,
+          "w": 3,
+          "x": 4,
+          "y": 1
+        },
+        "id": 21,
+        "options": {
+          "inlineEditing": true,
+          "root": {
+            "background": {
+              "color": {
+                "fixed": "transparent"
+              },
+              "image": {
+                "fixed": "",
+                "mode": "fixed"
+              },
+              "size": "fill"
+            },
+            "border": {
+              "color": {
+                "fixed": "dark-green"
+              },
+              "width": 0
+            },
+            "constraint": {
+              "horizontal": "left",
+              "vertical": "top"
+            },
+            "elements": [
+              {
+                "background": {
+                  "color": {
+                    "fixed": "transparent"
+                  }
+                },
+                "border": {
+                  "color": {
+                    "fixed": "dark-green"
+                  },
+                  "width": 0
+                },
+                "config": {
+                  "align": "center",
+                  "color": {
+                    "fixed": "text"
+                  },
+                  "size": 18,
+                  "text": {
+                    "fixed": "Temperature"
+                  },
+                  "valign": "middle"
+                },
+                "constraint": {
+                  "horizontal": "left",
+                  "vertical": "top"
+                },
+                "name": "metric-title",
+                "placement": {
+                  "height": 32.96875,
+                  "left": 48,
+                  "top": 14,
+                  "width": 153.99305725097656
+                },
+                "type": "text"
+              },
+              {
+                "background": {
+                  "color": {
+                    "fixed": "transparent"
+                  }
+                },
+                "border": {
+                  "color": {
+                    "fixed": "dark-green"
+                  }
+                },
+                "config": {
+                  "align": "center",
+                  "color": {
+                    "field": "celsius",
+                    "fixed": "dark-green"
+                  },
+                  "size": 56,
+                  "text": {
+                    "field": "celsius",
+                    "fixed": "",
+                    "mode": "field"
+                  },
+                  "valign": "middle"
+                },
+                "constraint": {
+                  "horizontal": "left",
+                  "vertical": "top"
+                },
+                "name": "metric-value",
+                "placement": {
+                  "height": 111.99653625488281,
+                  "left": 13,
+                  "top": 43,
+                  "width": 240.00001525878906
+                },
+                "type": "metric-value"
+              },
+              {
+                "background": {
+                  "color": {
+                    "fixed": "transparent"
+                  }
+                },
+                "border": {
+                  "color": {
+                    "fixed": "dark-green"
+                  },
+                  "width": 0
+                },
+                "config": {
+                  "align": "center",
+                  "color": {
+                    "fixed": "#999c99"
+                  },
+                  "size": 18,
+                  "text": {
+                    "fixed": "Zone 01"
+                  },
+                  "valign": "middle"
+                },
+                "connections": [],
+                "constraint": {
+                  "horizontal": "left",
+                  "vertical": "top"
+                },
+                "name": "metric-region",
+                "placement": {
+                  "height": 60.00001907348633,
+                  "left": -56,
+                  "top": 144,
+                  "width": 366.9965515136719
+                },
+                "type": "text"
+              }
+            ],
+            "name": "Element 1701452831452",
+            "placement": {
+              "height": 100,
+              "left": 0,
+              "top": 0,
+              "width": 100
+            },
+            "type": "frame"
+          },
+          "showAdvancedTypes": true
+        },
+        "pluginVersion": "10.2.2",
+        "targets": [
+          {
+            "datasource": {
+              "type": "influxdb",
+              "uid": "${influx}"
+            },
+            "query": "from(bucket: \"dc\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"temperature_dc_01\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"celsius\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: last, createEmpty: false)\r\n  |> yield(name: \"last\")",
+            "refId": "A"
+          }
+        ],
+        "type": "canvas"
+      },
+      {
+        "datasource": {
+          "type": "influxdb",
+          "uid": "b69f7d96-d8df-4135-a28a-22f5b65a6104"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 60
+                }
+              ]
+            },
+            "unit": "humidity"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 6,
+          "w": 3,
+          "x": 7,
+          "y": 1
+        },
+        "id": 24,
+        "options": {
+          "inlineEditing": true,
+          "root": {
+            "background": {
+              "color": {
+                "fixed": "transparent"
+              },
+              "image": {
+                "fixed": "",
+                "mode": "fixed"
+              },
+              "size": "fill"
+            },
+            "border": {
+              "color": {
+                "fixed": "dark-green"
+              },
+              "width": 0
+            },
+            "constraint": {
+              "horizontal": "left",
+              "vertical": "top"
+            },
+            "elements": [
+              {
+                "background": {
+                  "color": {
+                    "fixed": "transparent"
+                  }
+                },
+                "border": {
+                  "color": {
+                    "fixed": "dark-green"
+                  },
+                  "width": 0
+                },
+                "config": {
+                  "align": "center",
+                  "color": {
+                    "fixed": "text"
+                  },
+                  "size": 18,
+                  "text": {
+                    "fixed": "Humidity"
+                  },
+                  "valign": "middle"
+                },
+                "constraint": {
+                  "horizontal": "left",
+                  "vertical": "top"
+                },
+                "name": "metric-title",
+                "placement": {
+                  "height": 32.96875,
+                  "left": 48,
+                  "top": 14,
+                  "width": 153.99305725097656
+                },
+                "type": "text"
+              },
+              {
+                "background": {
+                  "color": {
+                    "fixed": "transparent"
+                  }
+                },
+                "border": {
+                  "color": {
+                    "fixed": "dark-green"
+                  }
+                },
+                "config": {
+                  "align": "center",
+                  "color": {
+                    "field": "humidity",
+                    "fixed": "dark-green"
+                  },
+                  "size": 56,
+                  "text": {
+                    "field": "humidity",
+                    "fixed": "",
+                    "mode": "field"
+                  },
+                  "valign": "middle"
+                },
+                "constraint": {
+                  "horizontal": "left",
+                  "vertical": "top"
+                },
+                "name": "metric-value",
+                "placement": {
+                  "height": 111.99653625488281,
+                  "left": 13,
+                  "top": 43,
+                  "width": 240.00001525878906
+                },
+                "type": "metric-value"
+              },
+              {
+                "background": {
+                  "color": {
+                    "fixed": "transparent"
+                  }
+                },
+                "border": {
+                  "color": {
+                    "fixed": "dark-green"
+                  },
+                  "width": 0
+                },
+                "config": {
+                  "align": "center",
+                  "color": {
+                    "fixed": "#999c99"
+                  },
+                  "size": 18,
+                  "text": {
+                    "fixed": "Zone 01"
+                  },
+                  "valign": "middle"
+                },
+                "connections": [],
+                "constraint": {
+                  "horizontal": "left",
+                  "vertical": "top"
+                },
+                "name": "metric-region",
+                "placement": {
+                  "height": 60.000003814697266,
+                  "left": -56,
+                  "top": 144,
+                  "width": 366.9965515136719
+                },
+                "type": "text"
+              }
+            ],
+            "name": "Element 1701452831452",
+            "placement": {
+              "height": 100,
+              "left": 0,
+              "top": 0,
+              "width": 100
+            },
+            "type": "frame"
+          },
+          "showAdvancedTypes": true
+        },
+        "pluginVersion": "10.2.2",
+        "targets": [
+          {
+            "datasource": {
+              "type": "influxdb",
+              "uid": "b69f7d96-d8df-4135-a28a-22f5b65a6104"
+            },
+            "query": "from(bucket: \"dc\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"humidity_dc_01\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"humidity\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: last, createEmpty: false)\r\n  |> yield(name: \"last_humidity_01\")",
+            "refId": "A"
+          }
+        ],
+        "type": "canvas"
+      },
+      {
+        "datasource": {
+          "type": "influxdb",
+          "uid": "b69f7d96-d8df-4135-a28a-22f5b65a6104"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 30
+                }
+              ]
+            },
+            "unit": "celsius"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 6,
+          "w": 3,
+          "x": 10,
+          "y": 1
+        },
+        "id": 22,
+        "options": {
+          "inlineEditing": true,
+          "root": {
+            "background": {
+              "color": {
+                "fixed": "transparent"
+              },
+              "image": {
+                "fixed": "",
+                "mode": "fixed"
+              },
+              "size": "fill"
+            },
+            "border": {
+              "color": {
+                "fixed": "dark-green"
+              },
+              "width": 0
+            },
+            "constraint": {
+              "horizontal": "left",
+              "vertical": "top"
+            },
+            "elements": [
+              {
+                "background": {
+                  "color": {
+                    "fixed": "transparent"
+                  }
+                },
+                "border": {
+                  "color": {
+                    "fixed": "dark-green"
+                  },
+                  "width": 0
+                },
+                "config": {
+                  "align": "center",
+                  "color": {
+                    "fixed": "text"
+                  },
+                  "size": 18,
+                  "text": {
+                    "fixed": "Temperature"
+                  },
+                  "valign": "middle"
+                },
+                "constraint": {
+                  "horizontal": "left",
+                  "vertical": "top"
+                },
+                "name": "metric-title",
+                "placement": {
+                  "height": 32.96875,
+                  "left": 48,
+                  "top": 14,
+                  "width": 153.99305725097656
+                },
+                "type": "text"
+              },
+              {
+                "background": {
+                  "color": {
+                    "fixed": "transparent"
+                  }
+                },
+                "border": {
+                  "color": {
+                    "fixed": "dark-green"
+                  }
+                },
+                "config": {
+                  "align": "center",
+                  "color": {
+                    "field": "celsius",
+                    "fixed": "dark-green"
+                  },
+                  "size": 56,
+                  "text": {
+                    "field": "celsius",
+                    "fixed": "",
+                    "mode": "field"
+                  },
+                  "valign": "middle"
+                },
+                "constraint": {
+                  "horizontal": "left",
+                  "vertical": "top"
+                },
+                "name": "metric-value",
+                "placement": {
+                  "height": 111.99653625488281,
+                  "left": 13,
+                  "top": 43,
+                  "width": 240.00001525878906
+                },
+                "type": "metric-value"
+              },
+              {
+                "background": {
+                  "color": {
+                    "fixed": "transparent"
+                  }
+                },
+                "border": {
+                  "color": {
+                    "fixed": "dark-green"
+                  },
+                  "width": 0
+                },
+                "config": {
+                  "align": "center",
+                  "color": {
+                    "fixed": "#999c99"
+                  },
+                  "size": 18,
+                  "text": {
+                    "fixed": "Zone 02"
+                  },
+                  "valign": "middle"
+                },
+                "connections": [],
+                "constraint": {
+                  "horizontal": "left",
+                  "vertical": "top"
+                },
+                "name": "metric-region",
+                "placement": {
+                  "height": 60.000003814697266,
+                  "left": -56,
+                  "top": 144,
+                  "width": 366.9965515136719
+                },
+                "type": "text"
+              }
+            ],
+            "name": "Element 1701452831452",
+            "placement": {
+              "height": 100,
+              "left": 0,
+              "top": 0,
+              "width": 100
+            },
+            "type": "frame"
+          },
+          "showAdvancedTypes": true
+        },
+        "pluginVersion": "10.2.2",
+        "targets": [
+          {
+            "datasource": {
+              "type": "influxdb",
+              "uid": "b69f7d96-d8df-4135-a28a-22f5b65a6104"
+            },
+            "query": "from(bucket: \"dc\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"temperature_dc_02\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"celsius\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: last, createEmpty: false)\r\n  |> yield(name: \"last\")",
+            "refId": "A"
+          }
+        ],
+        "type": "canvas"
+      },
+      {
+        "datasource": {
+          "type": "influxdb",
+          "uid": "b69f7d96-d8df-4135-a28a-22f5b65a6104"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 60
+                }
+              ]
+            },
+            "unit": "humidity"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 6,
+          "w": 3,
+          "x": 13,
+          "y": 1
+        },
+        "id": 23,
+        "options": {
+          "inlineEditing": true,
+          "root": {
+            "background": {
+              "color": {
+                "fixed": "transparent"
+              },
+              "image": {
+                "fixed": "",
+                "mode": "fixed"
+              },
+              "size": "fill"
+            },
+            "border": {
+              "color": {
+                "fixed": "dark-green"
+              },
+              "width": 0
+            },
+            "constraint": {
+              "horizontal": "left",
+              "vertical": "top"
+            },
+            "elements": [
+              {
+                "background": {
+                  "color": {
+                    "fixed": "transparent"
+                  }
+                },
+                "border": {
+                  "color": {
+                    "fixed": "dark-green"
+                  },
+                  "width": 0
+                },
+                "config": {
+                  "align": "center",
+                  "color": {
+                    "fixed": "text"
+                  },
+                  "size": 18,
+                  "text": {
+                    "fixed": "Humidity"
+                  },
+                  "valign": "middle"
+                },
+                "constraint": {
+                  "horizontal": "left",
+                  "vertical": "top"
+                },
+                "name": "metric-title",
+                "placement": {
+                  "height": 32.96875,
+                  "left": 48,
+                  "top": 14,
+                  "width": 153.99305725097656
+                },
+                "type": "text"
+              },
+              {
+                "background": {
+                  "color": {
+                    "fixed": "transparent"
+                  }
+                },
+                "border": {
+                  "color": {
+                    "fixed": "dark-green"
+                  }
+                },
+                "config": {
+                  "align": "center",
+                  "color": {
+                    "field": "humidity",
+                    "fixed": "dark-green"
+                  },
+                  "size": 56,
+                  "text": {
+                    "field": "humidity",
+                    "fixed": "",
+                    "mode": "field"
+                  },
+                  "valign": "middle"
+                },
+                "constraint": {
+                  "horizontal": "left",
+                  "vertical": "top"
+                },
+                "name": "metric-value",
+                "placement": {
+                  "height": 111.99653625488281,
+                  "left": 13,
+                  "top": 43,
+                  "width": 240.00001525878906
+                },
+                "type": "metric-value"
+              },
+              {
+                "background": {
+                  "color": {
+                    "fixed": "transparent"
+                  }
+                },
+                "border": {
+                  "color": {
+                    "fixed": "dark-green"
+                  },
+                  "width": 0
+                },
+                "config": {
+                  "align": "center",
+                  "color": {
+                    "fixed": "#999c99"
+                  },
+                  "size": 18,
+                  "text": {
+                    "fixed": "Zone 02"
+                  },
+                  "valign": "middle"
+                },
+                "connections": [],
+                "constraint": {
+                  "horizontal": "left",
+                  "vertical": "top"
+                },
+                "name": "metric-region",
+                "placement": {
+                  "height": 60.000003814697266,
+                  "left": -56,
+                  "top": 144,
+                  "width": 366.9965515136719
+                },
+                "type": "text"
+              }
+            ],
+            "name": "Element 1701452831452",
+            "placement": {
+              "height": 100,
+              "left": 0,
+              "top": 0,
+              "width": 100
+            },
+            "type": "frame"
+          },
+          "showAdvancedTypes": true
+        },
+        "pluginVersion": "10.2.2",
+        "targets": [
+          {
+            "datasource": {
+              "type": "influxdb",
+              "uid": "b69f7d96-d8df-4135-a28a-22f5b65a6104"
+            },
+            "query": "from(bucket: \"dc\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"humidity_dc_01\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"humidity\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: last, createEmpty: false)\r\n  |> yield(name: \"last_humidity_01\")",
+            "refId": "A"
+          }
+        ],
+        "type": "canvas"
+      },
+      {
+        "datasource": {
+          "type": "influxdb",
+          "uid": "b69f7d96-d8df-4135-a28a-22f5b65a6104"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "fixedColor": "green",
+              "mode": "fixed"
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                }
+              ]
+            },
+            "unit": "bool"
+          },
+          "overrides": [
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "open"
+              },
+              "properties": [
+                {
+                  "id": "mappings",
+                  "value": [
+                    {
+                      "options": {
+                        "false": {
+                          "color": "green",
+                          "index": 0,
+                          "text": "Close"
+                        }
+                      },
+                      "type": "value"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "gridPos": {
+          "h": 6,
+          "w": 3,
+          "x": 16,
+          "y": 1
+        },
+        "id": 26,
+        "options": {
+          "inlineEditing": true,
+          "root": {
+            "background": {
+              "color": {
+                "fixed": "transparent"
+              },
+              "image": {
+                "fixed": "",
+                "mode": "fixed"
+              },
+              "size": "fill"
+            },
+            "border": {
+              "color": {
+                "fixed": "dark-green"
+              },
+              "width": 0
+            },
+            "constraint": {
+              "horizontal": "left",
+              "vertical": "top"
+            },
+            "elements": [
+              {
+                "background": {
+                  "color": {
+                    "fixed": "transparent"
+                  }
+                },
+                "border": {
+                  "color": {
+                    "fixed": "dark-green"
+                  },
+                  "width": 0
+                },
+                "config": {
+                  "align": "center",
+                  "color": {
+                    "fixed": "text"
+                  },
+                  "size": 18,
+                  "text": {
+                    "fixed": "Door"
+                  },
+                  "valign": "middle"
+                },
+                "constraint": {
+                  "horizontal": "left",
+                  "vertical": "top"
+                },
+                "name": "metric-title",
+                "placement": {
+                  "height": 32.96875,
+                  "left": 48,
+                  "top": 14,
+                  "width": 153.99305725097656
+                },
+                "type": "text"
+              },
+              {
+                "background": {
+                  "color": {
+                    "fixed": "transparent"
+                  }
+                },
+                "border": {
+                  "color": {
+                    "fixed": "dark-green"
+                  }
+                },
+                "config": {
+                  "align": "center",
+                  "color": {
+                    "field": "open",
+                    "fixed": "dark-green"
+                  },
+                  "size": 56,
+                  "text": {
+                    "field": "open",
+                    "fixed": "",
+                    "mode": "field"
+                  },
+                  "valign": "middle"
+                },
+                "constraint": {
+                  "horizontal": "left",
+                  "vertical": "top"
+                },
+                "name": "metric-value",
+                "placement": {
+                  "height": 111.99653625488281,
+                  "left": 13,
+                  "top": 43,
+                  "width": 240.00001525878906
+                },
+                "type": "metric-value"
+              }
+            ],
+            "name": "Element 1701452831452",
+            "placement": {
+              "height": 100,
+              "left": 0,
+              "top": 0,
+              "width": 100
+            },
+            "type": "frame"
+          },
+          "showAdvancedTypes": true
+        },
+        "pluginVersion": "10.2.2",
+        "targets": [
+          {
+            "datasource": {
+              "type": "influxdb",
+              "uid": "b69f7d96-d8df-4135-a28a-22f5b65a6104"
+            },
+            "query": "from(bucket: \"dc\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"Door\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"open\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: last, createEmpty: false)\r\n  |> yield(name: \"last\")",
+            "refId": "A"
+          }
+        ],
+        "type": "canvas"
+      },
+      {
+        "datasource": {
+          "type": "influxdb",
+          "uid": "b69f7d96-d8df-4135-a28a-22f5b65a6104"
+        },
+        "gridPos": {
+          "h": 1,
+          "w": 24,
+          "x": 0,
+          "y": 7
+        },
+        "id": 27,
+        "options": {
+          "code": {
+            "language": "plaintext",
+            "showLineNumbers": false,
+            "showMiniMap": false
+          },
+          "content": "<div style=\"border-top: 0.2px solid #ced4da;\">\r\n<div>",
+          "mode": "html"
+        },
+        "pluginVersion": "10.2.2",
+        "type": "text"
+      },
+      {
+        "collapsed": false,
+        "gridPos": {
+          "h": 1,
+          "w": 24,
+          "x": 0,
+          "y": 8
+        },
+        "id": 11,
+        "panels": [],
+        "title": "Enviromment 🌡️",
+        "type": "row"
+      },
+      {
+        "datasource": {
+          "type": "influxdb",
+          "uid": "b69f7d96-d8df-4135-a28a-22f5b65a6104"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "fixedColor": "dark-green",
+              "mode": "fixed"
+            },
+            "custom": {
+              "fillOpacity": 40,
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "insertNulls": false,
+              "lineWidth": 0,
+              "spanNulls": false
+            },
+            "mappings": [
+              {
+                "options": {
+                  "false": {
+                    "index": 1,
+                    "text": "Closed"
+                  },
+                  "true": {
+                    "index": 0,
+                    "text": "Open"
+                  }
+                },
+                "type": "value"
+              }
+            ],
+            "thresholds": {
+              "mode": "percentage",
+              "steps": [
+                {
+                  "color": "dark-green",
+                  "value": null
+                }
+              ]
+            },
+            "unit": "bool"
+          },
+          "overrides": [
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "open"
+              },
+              "properties": [
+                {
+                  "id": "displayName",
+                  "value": "Door"
+                }
+              ]
+            }
+          ]
+        },
+        "gridPos": {
+          "h": 9,
+          "w": 12,
+          "x": 0,
+          "y": 9
+        },
+        "id": 18,
+        "options": {
+          "alignValue": "center",
+          "legend": {
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": true
+          },
+          "mergeValues": false,
+          "rowHeight": 0.21,
+          "showValue": "never",
+          "tooltip": {
+            "mode": "single",
+            "sort": "none"
+          }
+        },
+        "pluginVersion": "10.2.2",
+        "targets": [
+          {
+            "datasource": {
+              "type": "influxdb",
+              "uid": "b69f7d96-d8df-4135-a28a-22f5b65a6104"
+            },
+            "query": "from(bucket: \"dc\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"Door\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"open\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: last, createEmpty: false)\r\n  |> yield(name: \"last\")",
+            "refId": "A"
+          }
+        ],
+        "title": "Door DC 🚪",
+        "type": "state-timeline"
+      },
+      {
+        "datasource": {
+          "type": "influxdb",
+          "uid": "b69f7d96-d8df-4135-a28a-22f5b65a6104"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "fixedColor": "#378716",
+              "mode": "fixed",
+              "seriesBy": "min"
+            },
+            "custom": {
+              "axisBorderShow": false,
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "drawStyle": "line",
+              "fillOpacity": 25,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "insertNulls": false,
+              "lineInterpolation": "smooth",
+              "lineWidth": 2,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "dashed"
+              }
+            },
+            "fieldMinMax": false,
+            "mappings": [],
+            "max": 50,
+            "min": 0,
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "semi-dark-blue",
+                  "value": null
+                },
+                {
+                  "color": "dark-blue",
+                  "value": 30
+                }
+              ]
+            },
+            "unit": "celsius"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 12,
+          "y": 9
+        },
+        "id": 2,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": true
+          },
+          "tooltip": {
+            "mode": "single",
+            "sort": "none"
+          }
+        },
+        "targets": [
+          {
+            "datasource": {
+              "type": "influxdb",
+              "uid": "b69f7d96-d8df-4135-a28a-22f5b65a6104"
+            },
+            "query": "from(bucket: \"dc\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"temperature_dc_01\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"celsius\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\r\n  |> yield(name: \"mean\")",
+            "refId": "A"
+          }
+        ],
+        "title": "DC_Temperature_Zone-01 🌡️",
+        "type": "timeseries"
+      },
+      {
+        "datasource": {
+          "type": "influxdb",
+          "uid": "b69f7d96-d8df-4135-a28a-22f5b65a6104"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "fixedColor": "#378716",
+              "mode": "fixed"
+            },
+            "custom": {
+              "axisBorderShow": false,
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "drawStyle": "line",
+              "fillOpacity": 25,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "insertNulls": false,
+              "lineInterpolation": "smooth",
+              "lineWidth": 2,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "dashed"
+              }
+            },
+            "mappings": [],
+            "max": 50,
+            "min": 0,
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "dark-blue",
+                  "value": null
+                },
+                {
+                  "color": "dark-blue",
+                  "value": 30
+                }
+              ]
+            },
+            "unit": "celsius"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 12,
+          "y": 17
+        },
+        "id": 1,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": true
+          },
+          "tooltip": {
+            "mode": "single",
+            "sort": "none"
+          }
+        },
+        "targets": [
+          {
+            "datasource": {
+              "type": "influxdb",
+              "uid": "b69f7d96-d8df-4135-a28a-22f5b65a6104"
+            },
+            "query": "from(bucket: \"dc\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"temperature_dc_02\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"celsius\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\r\n  |> yield(name: \"mean\")",
+            "refId": "A"
+          }
+        ],
+        "title": "DC_Temperature_Zone-02 🌡️",
+        "type": "timeseries"
+      },
+      {
+        "datasource": {
+          "type": "influxdb",
+          "uid": "b69f7d96-d8df-4135-a28a-22f5b65a6104"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "fixedColor": "#378716",
+              "mode": "fixed"
+            },
+            "custom": {
+              "axisBorderShow": false,
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "drawStyle": "line",
+              "fillOpacity": 25,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "insertNulls": false,
+              "lineInterpolation": "linear",
+              "lineWidth": 2,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "max": 100,
+            "min": 0,
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "blue",
+                  "value": null
+                },
+                {
+                  "color": "super-light-blue",
+                  "value": 0
+                },
+                {
+                  "color": "semi-dark-blue",
+                  "value": 40
+                },
+                {
+                  "color": "dark-blue",
+                  "value": 60
+                }
+              ]
+            },
+            "unit": "humidity"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 0,
+          "y": 18
+        },
+        "id": 13,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": true
+          },
+          "tooltip": {
+            "mode": "single",
+            "sort": "none"
+          }
+        },
+        "pluginVersion": "10.2.2",
+        "targets": [
+          {
+            "datasource": {
+              "type": "influxdb",
+              "uid": "b69f7d96-d8df-4135-a28a-22f5b65a6104"
+            },
+            "query": "from(bucket: \"dc\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"humidity_dc_01\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"humidity\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: last, createEmpty: false)\r\n  |> yield(name: \"last_humidity_01\")",
+            "refId": "A"
+          }
+        ],
+        "title": "Humidity Zone 01 💧",
+        "type": "timeseries"
+      },
+      {
+        "datasource": {
+          "type": "influxdb",
+          "uid": "b69f7d96-d8df-4135-a28a-22f5b65a6104"
+        },
+        "gridPos": {
+          "h": 9,
+          "w": 12,
+          "x": 12,
+          "y": 25
+        },
+        "id": 14,
+        "options": {
+          "code": {
+            "language": "html",
+            "showLineNumbers": false,
+            "showMiniMap": false
+          },
+          "content": "\n<div style=\"display:flex; gap:40px;padding-left:80px\" >\n                <iframe class=\"iframe\" src=\"http://10.7.76.60:3081/stream.html?src=dc-front\" height=\"240px\" width=\"340px\">\n                </iframe>\n                <iframe class=\"iframe\" src=\"http://10.7.76.60:3081/stream.html?src=dc-back\" height=\"240px\" width=\"340px\">\n                </iframe>\n</div>\n",
+          "mode": "html"
+        },
+        "pluginVersion": "10.2.2",
+        "title": "DC Meraki Cameras 📹",
+        "type": "text"
+      },
+      {
+        "datasource": {
+          "type": "influxdb",
+          "uid": "b69f7d96-d8df-4135-a28a-22f5b65a6104"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "fixedColor": "#378716",
+              "mode": "fixed"
+            },
+            "custom": {
+              "axisBorderShow": false,
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "drawStyle": "line",
+              "fillOpacity": 25,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "insertNulls": false,
+              "lineInterpolation": "linear",
+              "lineWidth": 2,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "max": 100,
+            "min": 0,
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "blue"
+                },
+                {
+                  "color": "super-light-blue",
+                  "value": 0
+                },
+                {
+                  "color": "semi-dark-blue",
+                  "value": 40
+                },
+                {
+                  "color": "dark-blue",
+                  "value": 60
+                }
+              ]
+            },
+            "unit": "humidity"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 0,
+          "y": 26
+        },
+        "id": 5,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": true
+          },
+          "tooltip": {
+            "mode": "single",
+            "sort": "none"
+          }
+        },
+        "pluginVersion": "10.2.2",
+        "targets": [
+          {
+            "datasource": {
+              "type": "influxdb",
+              "uid": "b69f7d96-d8df-4135-a28a-22f5b65a6104"
+            },
+            "query": "from(bucket: \"dc\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"humidity_dc_02\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"humidity\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: last, createEmpty: false)\r\n  |> yield(name: \"last_humidity_02\")",
+            "refId": "A"
+          }
+        ],
+        "title": "Humidity Zone 02 💧",
+        "type": "timeseries"
+      },
+      {
+        "datasource": {
+          "type": "influxdb",
+          "uid": "b69f7d96-d8df-4135-a28a-22f5b65a6104"
+        },
+        "gridPos": {
+          "h": 1,
+          "w": 24,
+          "x": 0,
+          "y": 34
+        },
+        "id": 28,
+        "options": {
+          "code": {
+            "language": "plaintext",
+            "showLineNumbers": false,
+            "showMiniMap": false
+          },
+          "content": "<div style=\"border-top: 0.2px solid #ced4da;\">\r\n<div>",
+          "mode": "html"
+        },
+        "pluginVersion": "10.2.2",
+        "type": "text"
+      },
+      {
+        "collapsed": false,
+        "gridPos": {
+          "h": 1,
+          "w": 24,
+          "x": 0,
+          "y": 35
+        },
+        "id": 10,
+        "panels": [],
+        "title": "Energy 🪫",
+        "type": "row"
+      },
+      {
+        "datasource": {
+          "type": "influxdb",
+          "uid": "b69f7d96-d8df-4135-a28a-22f5b65a6104"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "fixedColor": "#378716",
+              "mode": "fixed"
+            },
+            "custom": {
+              "axisBorderShow": false,
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "drawStyle": "line",
+              "fillOpacity": 25,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "insertNulls": false,
+              "lineInterpolation": "linear",
+              "lineWidth": 2,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "max": 240,
+            "min": 215,
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green"
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            },
+            "unit": "volt"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 0,
+          "y": 36
+        },
+        "id": 12,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": true
+          },
+          "tooltip": {
+            "mode": "single",
+            "sort": "none"
+          }
+        },
+        "targets": [
+          {
+            "datasource": {
+              "type": "influxdb",
+              "uid": "b69f7d96-d8df-4135-a28a-22f5b65a6104"
+            },
+            "query": "from(bucket: \"dc\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"Main_Volts\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"mainsVolts\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\r\n  |> yield(name: \"mean\")",
+            "refId": "A"
+          }
+        ],
+        "title": "Power ⚡",
+        "type": "timeseries"
+      },
+      {
+        "datasource": {
+          "type": "influxdb",
+          "uid": "b69f7d96-d8df-4135-a28a-22f5b65a6104"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "fixedColor": "#378716",
+              "mode": "fixed"
+            },
+            "custom": {
+              "axisBorderShow": false,
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "fillOpacity": 80,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "lineWidth": 1,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "min": 0,
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "dark-blue"
+                }
+              ]
+            },
+            "unit": "kwatth"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 12,
+          "y": 36
+        },
+        "id": 8,
+        "options": {
+          "barRadius": 0,
+          "barWidth": 0.97,
+          "fullHighlight": false,
+          "groupWidth": 0.7,
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": true
+          },
+          "orientation": "auto",
+          "showValue": "never",
+          "stacking": "none",
+          "tooltip": {
+            "mode": "single",
+            "sort": "none"
+          },
+          "xTickLabelRotation": 0,
+          "xTickLabelSpacing": 0
+        },
+        "pluginVersion": "10.2.2",
+        "targets": [
+          {
+            "datasource": {
+              "type": "influxdb",
+              "uid": "b69f7d96-d8df-4135-a28a-22f5b65a6104"
+            },
+            "query": "from(bucket: \"dc\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"Main_Power\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"mainsRealPower\")\r\n  |> aggregateWindow(every: 1h, fn: mean, createEmpty: false)\r\n  |> yield(name: \"mean\")",
+            "refId": "A"
+          }
+        ],
+        "title": "Energy Cosumption 🔌",
+        "type": "barchart"
+      },
+      {
+        "datasource": {
+          "type": "influxdb",
+          "uid": "b69f7d96-d8df-4135-a28a-22f5b65a6104"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "fixedColor": "#378716",
+              "mode": "fixed"
+            },
+            "custom": {
+              "axisBorderShow": false,
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "drawStyle": "line",
+              "fillOpacity": 25,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "insertNulls": false,
+              "lineInterpolation": "smooth",
+              "lineStyle": {
+                "fill": "solid"
+              },
+              "lineWidth": 2,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "dark-blue"
+                },
+                {
+                  "color": "red",
+                  "value": 12
+                }
+              ]
+            },
+            "unit": "amp"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 0,
+          "y": 44
+        },
+        "id": 7,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": false
+          },
+          "tooltip": {
+            "mode": "single",
+            "sort": "none"
+          }
+        },
+        "targets": [
+          {
+            "datasource": {
+              "type": "influxdb",
+              "uid": "b69f7d96-d8df-4135-a28a-22f5b65a6104"
+            },
+            "query": "from(bucket: \"dc\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"Main_Current\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"mainsCurrent\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\r\n  |> yield(name: \"mean\")",
+            "refId": "A"
+          }
+        ],
+        "title": "Current 〽️",
+        "type": "timeseries"
+      },
+      {
+        "datasource": {
+          "type": "influxdb",
+          "uid": "b69f7d96-d8df-4135-a28a-22f5b65a6104"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "fixedColor": "#378716",
+              "mode": "fixed"
+            },
+            "custom": {
+              "axisBorderShow": false,
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "drawStyle": "line",
+              "fillOpacity": 25,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "insertNulls": false,
+              "lineInterpolation": "linear",
+              "lineWidth": 2,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "dark-blue"
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            },
+            "unit": "rothz"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 12,
+          "y": 44
+        },
+        "id": 15,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": true
+          },
+          "tooltip": {
+            "mode": "single",
+            "sort": "none"
+          }
+        },
+        "targets": [
+          {
+            "datasource": {
+              "type": "influxdb",
+              "uid": "b69f7d96-d8df-4135-a28a-22f5b65a6104"
+            },
+            "query": "from(bucket: \"dc\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"Frequency\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"mainsFrequency\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\r\n  |> yield(name: \"mean\")",
+            "refId": "A"
+          }
+        ],
+        "title": "Frequency 〽️",
+        "type": "timeseries"
+      },
+      {
+        "datasource": {
+          "type": "influxdb",
+          "uid": "b69f7d96-d8df-4135-a28a-22f5b65a6104"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "fixedColor": "#378716",
+              "mode": "fixed"
+            },
+            "custom": {
+              "axisBorderShow": false,
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "drawStyle": "line",
+              "fillOpacity": 25,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "insertNulls": false,
+              "lineInterpolation": "smooth",
+              "lineWidth": 2,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green"
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            },
+            "unit": "voltamp"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 0,
+          "y": 52
+        },
+        "id": 16,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": true
+          },
+          "tooltip": {
+            "mode": "single",
+            "sort": "none"
+          }
+        },
+        "targets": [
+          {
+            "datasource": {
+              "type": "influxdb",
+              "uid": "b69f7d96-d8df-4135-a28a-22f5b65a6104"
+            },
+            "query": "from(bucket: \"dc\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"Apparent_Power\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"mainsApparentPower\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: mean, createEmpty: false)\r\n  |> yield(name: \"mean\")",
+            "refId": "A"
+          }
+        ],
+        "title": "Apparent Power 🔌",
+        "type": "timeseries"
+      },
+      {
+        "datasource": {
+          "type": "influxdb",
+          "uid": "b69f7d96-d8df-4135-a28a-22f5b65a6104"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "fixedColor": "#378716",
+              "mode": "fixed"
+            },
+            "custom": {
+              "axisBorderShow": false,
+              "axisCenteredZero": false,
+              "axisColorMode": "text",
+              "axisLabel": "",
+              "axisPlacement": "auto",
+              "barAlignment": 0,
+              "drawStyle": "line",
+              "fillOpacity": 25,
+              "gradientMode": "none",
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              },
+              "insertNulls": false,
+              "lineInterpolation": "stepBefore",
+              "lineWidth": 2,
+              "pointSize": 5,
+              "scaleDistribution": {
+                "type": "linear"
+              },
+              "showPoints": "auto",
+              "spanNulls": false,
+              "stacking": {
+                "group": "A",
+                "mode": "none"
+              },
+              "thresholdsStyle": {
+                "mode": "off"
+              }
+            },
+            "mappings": [],
+            "min": 0,
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green"
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            },
+            "unit": "none"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 12,
+          "y": 52
+        },
+        "id": 17,
+        "options": {
+          "legend": {
+            "calcs": [],
+            "displayMode": "list",
+            "placement": "bottom",
+            "showLegend": true
+          },
+          "tooltip": {
+            "mode": "single",
+            "sort": "none"
+          }
+        },
+        "targets": [
+          {
+            "datasource": {
+              "type": "influxdb",
+              "uid": "b69f7d96-d8df-4135-a28a-22f5b65a6104"
+            },
+            "query": "from(bucket: \"dc\")\r\n  |> range(start: v.timeRangeStart, stop: v.timeRangeStop)\r\n  |> filter(fn: (r) => r[\"_measurement\"] == \"Power_Factor\")\r\n  |> filter(fn: (r) => r[\"_field\"] == \"mainsPowerFactor\")\r\n  |> aggregateWindow(every: v.windowPeriod, fn: last, createEmpty: false)\r\n  |> yield(name: \"last\")",
+            "refId": "A"
+          }
+        ],
+        "title": "Power Factor 🔌",
+        "type": "timeseries"
+      }
+    ],
+    "refresh": "",
+    "schemaVersion": 38,
+    "tags": [],
+    "templating": {
+      "list": [
+        {
+          "current": {
+            "selected": false,
+            "text": "InfluxDB",
+            "value": "b69f7d96-d8df-4135-a28a-22f5b65a6104"
+          },
+          "hide": 0,
+          "includeAll": false,
+          "multi": false,
+          "name": "Influx",
+          "options": [],
+          "query": "influxdb",
+          "refresh": 1,
+          "regex": "",
+          "skipUrlSync": false,
+          "type": "datasource"
+        }
+      ]
+    },
+    "time": {
+      "from": "now-24h",
+      "to": "now"
+    },
+    "timepicker": {},
+    "timezone": "",
+    "title": "Data Center Env Copy",
+    "uid": "ede34277-f554-4023-b083-46c17196a860",
+    "version": 2,
+    "weekStart": ""
+  }
