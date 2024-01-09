@@ -1,0 +1,1131 @@
+[
+    {
+        "id": "3eb2c389b773bafa",
+        "type": "tab",
+        "label": "Meraki Dashboard",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "ecbb02face30cbcd",
+        "type": "influxdb out",
+        "z": "3eb2c389b773bafa",
+        "influxdb": "1c1a5edef41716e3",
+        "name": "InfluxDB",
+        "measurement": "Person_Count",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "CIL",
+        "bucket": "Meraki",
+        "x": 1060,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "a35de9ecd55a82e8",
+        "type": "mqtt in",
+        "z": "3eb2c389b773bafa",
+        "name": "",
+        "topic": "/merakimv/Q2EV-8PP8-BVGG/0",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "aab077a9a3b984a5",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 310,
+        "y": 100,
+        "wires": [
+            [
+                "1e9266061fca71ec"
+            ]
+        ]
+    },
+    {
+        "id": "34b673c1cf45272f",
+        "type": "mqtt in",
+        "z": "3eb2c389b773bafa",
+        "name": "Temperature_DC_01",
+        "topic": "meraki/v1/mt/L_579838452023959405/ble/0C:7B:C8:FF:55:83/temperature",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "aab077a9a3b984a5",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 270,
+        "y": 180,
+        "wires": [
+            [
+                "b441eb41ace653ed",
+                "95ea4de1532681c4"
+            ]
+        ]
+    },
+    {
+        "id": "95ea4de1532681c4",
+        "type": "influxdb out",
+        "z": "3eb2c389b773bafa",
+        "influxdb": "1c1a5edef41716e3",
+        "name": "InfluxDB",
+        "measurement": "temperature_dc_01",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "CIL",
+        "bucket": "dc",
+        "x": 920,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "b441eb41ace653ed",
+        "type": "debug",
+        "z": "3eb2c389b773bafa",
+        "name": "debug 1",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 900,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "2e3c16030e2a3503",
+        "type": "mqtt in",
+        "z": "3eb2c389b773bafa",
+        "name": "Temperature_DC_02",
+        "topic": "meraki/v1/mt/L_579838452023959405/ble/0C:7B:C8:FF:58:55/temperature",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "aab077a9a3b984a5",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 270,
+        "y": 440,
+        "wires": [
+            [
+                "bc99552ad31e8de0",
+                "a6714e04e1fa196d"
+            ]
+        ]
+    },
+    {
+        "id": "a6714e04e1fa196d",
+        "type": "influxdb out",
+        "z": "3eb2c389b773bafa",
+        "influxdb": "1c1a5edef41716e3",
+        "name": "InfluxDB",
+        "measurement": "temperature_dc_02",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "CIL",
+        "bucket": "dc",
+        "x": 900,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "bc99552ad31e8de0",
+        "type": "debug",
+        "z": "3eb2c389b773bafa",
+        "name": "debug 2",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 900,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "755f6317497f1a40",
+        "type": "mqtt in",
+        "z": "3eb2c389b773bafa",
+        "name": "Temperature_BCIC",
+        "topic": "meraki/v1/mt/L_579838452023959405/ble/0C:7B:C8:FF:57:89/temperature",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "aab077a9a3b984a5",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 1230,
+        "y": 440,
+        "wires": [
+            [
+                "b51dc76c24189c14",
+                "f634b35d6da79941"
+            ]
+        ]
+    },
+    {
+        "id": "f634b35d6da79941",
+        "type": "influxdb out",
+        "z": "3eb2c389b773bafa",
+        "influxdb": "1c1a5edef41716e3",
+        "name": "InfluxDB",
+        "measurement": "temperature_bcic",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "CIL",
+        "bucket": "dc",
+        "x": 1480,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "b51dc76c24189c14",
+        "type": "debug",
+        "z": "3eb2c389b773bafa",
+        "name": "debug 3",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1480,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "93df50d1d68059ca",
+        "type": "mqtt in",
+        "z": "3eb2c389b773bafa",
+        "name": "Door_BCIC",
+        "topic": "meraki/v1/mt/L_579838452023959405/ble/A8:46:9D:76:74:87/door",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "aab077a9a3b984a5",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 1210,
+        "y": 540,
+        "wires": [
+            [
+                "39c1bafab665eb22",
+                "de8ee9916da2ed9b"
+            ]
+        ]
+    },
+    {
+        "id": "de8ee9916da2ed9b",
+        "type": "debug",
+        "z": "3eb2c389b773bafa",
+        "name": "debug 4",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1480,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "1e9266061fca71ec",
+        "type": "change",
+        "z": "3eb2c389b773bafa",
+        "name": "",
+        "rules": [
+            {
+                "t": "move",
+                "p": "payload.ts",
+                "pt": "msg",
+                "to": "payload.time",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 620,
+        "y": 100,
+        "wires": [
+            [
+                "d98204d190ece669"
+            ]
+        ]
+    },
+    {
+        "id": "39c1bafab665eb22",
+        "type": "influxdb out",
+        "z": "3eb2c389b773bafa",
+        "influxdb": "1c1a5edef41716e3",
+        "name": "InfluxDB",
+        "measurement": "Door_BCIC",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "CIL",
+        "bucket": "Meraki",
+        "x": 1480,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "2d10642056625795",
+        "type": "debug",
+        "z": "3eb2c389b773bafa",
+        "name": "debug 5",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1060,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "d98204d190ece669",
+        "type": "function",
+        "z": "3eb2c389b773bafa",
+        "name": "Flatten",
+        "func": "let person = RED.util.getMessageProperty(msg,\"payload.counts.person\");\nmsg.payload.counts = person\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 810,
+        "y": 100,
+        "wires": [
+            [
+                "2d10642056625795",
+                "ecbb02face30cbcd"
+            ]
+        ]
+    },
+    {
+        "id": "6b3943b9fe2e82ed",
+        "type": "mqtt in",
+        "z": "3eb2c389b773bafa",
+        "name": "Energy_DC_Frequency",
+        "topic": "meraki/v1/mt/L_579838452023959405/ble/00:84:1E:8A:9D:E9/mainsFrequency",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "aab077a9a3b984a5",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 280,
+        "y": 900,
+        "wires": [
+            [
+                "82c594f916d42c74"
+            ]
+        ]
+    },
+    {
+        "id": "1f5c1ed92aecc47b",
+        "type": "debug",
+        "z": "3eb2c389b773bafa",
+        "name": "debug 6",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 900,
+        "y": 840,
+        "wires": []
+    },
+    {
+        "id": "82c594f916d42c74",
+        "type": "function",
+        "z": "3eb2c389b773bafa",
+        "name": "TimeConverter",
+        "func": "let nwTime = Date.parse(RED.util.getMessageProperty(msg, 'payload.ts'));\ndelete msg.payload.ts \nmsg.payload.time = nwTime\nreturn msg;",
+        "outputs": 2,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 580,
+        "y": 760,
+        "wires": [
+            [
+                "fe2a305079354233"
+            ],
+            [
+                "1f5c1ed92aecc47b"
+            ]
+        ]
+    },
+    {
+        "id": "fe2a305079354233",
+        "type": "influxdb out",
+        "z": "3eb2c389b773bafa",
+        "influxdb": "1c1a5edef41716e3",
+        "name": "InfluxDB",
+        "measurement": "Frequency",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "CIL",
+        "bucket": "dc",
+        "x": 900,
+        "y": 760,
+        "wires": []
+    },
+    {
+        "id": "54f5de363cfe44aa",
+        "type": "mqtt in",
+        "z": "3eb2c389b773bafa",
+        "name": "Energy_DC_Volts",
+        "topic": "meraki/v1/mt/L_579838452023959405/ble/00:84:1E:8A:9D:E9/mainsVolts",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "aab077a9a3b984a5",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 270,
+        "y": 960,
+        "wires": [
+            [
+                "019345fd85d9bad0"
+            ]
+        ]
+    },
+    {
+        "id": "59307351626147dd",
+        "type": "debug",
+        "z": "3eb2c389b773bafa",
+        "name": "debug 7",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 920,
+        "y": 960,
+        "wires": []
+    },
+    {
+        "id": "019345fd85d9bad0",
+        "type": "function",
+        "z": "3eb2c389b773bafa",
+        "name": "TimeConverter",
+        "func": "let nwTime = Date.parse(RED.util.getMessageProperty(msg, 'payload.ts'));\ndelete msg.payload.ts \nmsg.payload.time = nwTime\nreturn msg;",
+        "outputs": 2,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 640,
+        "y": 900,
+        "wires": [
+            [
+                "33c54d757866bd0e"
+            ],
+            [
+                "59307351626147dd"
+            ]
+        ]
+    },
+    {
+        "id": "33c54d757866bd0e",
+        "type": "influxdb out",
+        "z": "3eb2c389b773bafa",
+        "influxdb": "1c1a5edef41716e3",
+        "name": "InfluxDB",
+        "measurement": "Main_Volts",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "CIL",
+        "bucket": "dc",
+        "x": 920,
+        "y": 900,
+        "wires": []
+    },
+    {
+        "id": "36c5ae705e408d73",
+        "type": "mqtt in",
+        "z": "3eb2c389b773bafa",
+        "name": "Energy_DC_Current",
+        "topic": "meraki/v1/mt/L_579838452023959405/ble/00:84:1E:8A:9D:E9/mainsCurrent",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "aab077a9a3b984a5",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 270,
+        "y": 1080,
+        "wires": [
+            [
+                "f1f382c8128f5d3c"
+            ]
+        ]
+    },
+    {
+        "id": "b5821a478840b24b",
+        "type": "debug",
+        "z": "3eb2c389b773bafa",
+        "name": "debug 8",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 920,
+        "y": 1200,
+        "wires": []
+    },
+    {
+        "id": "f1f382c8128f5d3c",
+        "type": "function",
+        "z": "3eb2c389b773bafa",
+        "name": "TimeConverter",
+        "func": "let nwTime = Date.parse(RED.util.getMessageProperty(msg, 'payload.ts'));\ndelete msg.payload.ts \nmsg.payload.time = nwTime\nreturn msg;",
+        "outputs": 2,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 640,
+        "y": 1140,
+        "wires": [
+            [
+                "47749f85c4460ae9"
+            ],
+            [
+                "b5821a478840b24b"
+            ]
+        ]
+    },
+    {
+        "id": "47749f85c4460ae9",
+        "type": "influxdb out",
+        "z": "3eb2c389b773bafa",
+        "influxdb": "1c1a5edef41716e3",
+        "name": "InfluxDB",
+        "measurement": "Main_Current",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "CIL",
+        "bucket": "dc",
+        "x": 920,
+        "y": 1140,
+        "wires": []
+    },
+    {
+        "id": "102bdf4b35c15f16",
+        "type": "mqtt in",
+        "z": "3eb2c389b773bafa",
+        "name": "Energy_DC_Power",
+        "topic": "meraki/v1/mt/L_579838452023959405/ble/00:84:1E:8A:9D:E9/mainsRealPower",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "aab077a9a3b984a5",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 270,
+        "y": 1020,
+        "wires": [
+            [
+                "6305bd76ae9608a7"
+            ]
+        ]
+    },
+    {
+        "id": "43d7f894049ddf06",
+        "type": "debug",
+        "z": "3eb2c389b773bafa",
+        "name": "debug 9",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 920,
+        "y": 1080,
+        "wires": []
+    },
+    {
+        "id": "6305bd76ae9608a7",
+        "type": "function",
+        "z": "3eb2c389b773bafa",
+        "name": "TimeConverter",
+        "func": "let nwTime = Date.parse(RED.util.getMessageProperty(msg, 'payload.ts'));\ndelete msg.payload.ts \nmsg.payload.time = nwTime\nreturn msg;",
+        "outputs": 2,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 640,
+        "y": 1020,
+        "wires": [
+            [
+                "afe57bd8d6b95a41"
+            ],
+            [
+                "43d7f894049ddf06"
+            ]
+        ]
+    },
+    {
+        "id": "afe57bd8d6b95a41",
+        "type": "influxdb out",
+        "z": "3eb2c389b773bafa",
+        "influxdb": "1c1a5edef41716e3",
+        "name": "InfluxDB",
+        "measurement": "Main_Power",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "CIL",
+        "bucket": "dc",
+        "x": 920,
+        "y": 1020,
+        "wires": []
+    },
+    {
+        "id": "dd06f71f52c65d6b",
+        "type": "mqtt in",
+        "z": "3eb2c389b773bafa",
+        "name": "Humidity_DC_01",
+        "topic": "meraki/v1/mt/L_579838452023959405/ble/0C:7B:C8:FF:58:55/humidity",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "aab077a9a3b984a5",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 260,
+        "y": 280,
+        "wires": [
+            [
+                "2203fb6d7174398c",
+                "1644f2dd7c1117a9"
+            ]
+        ]
+    },
+    {
+        "id": "1644f2dd7c1117a9",
+        "type": "influxdb out",
+        "z": "3eb2c389b773bafa",
+        "influxdb": "1c1a5edef41716e3",
+        "name": "InfluxDB",
+        "measurement": "humidity_dc_01",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "CIL",
+        "bucket": "dc",
+        "x": 920,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "2203fb6d7174398c",
+        "type": "debug",
+        "z": "3eb2c389b773bafa",
+        "name": "debug 10",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 920,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "bd2f8fd0ca411fb3",
+        "type": "mqtt in",
+        "z": "3eb2c389b773bafa",
+        "name": "Humidity_DC_02",
+        "topic": "meraki/v1/mt/L_579838452023959405/ble/0C:7B:C8:FF:55:83/humidity",
+        "qos": "0",
+        "datatype": "auto-detect",
+        "broker": "aab077a9a3b984a5",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 260,
+        "y": 520,
+        "wires": [
+            [
+                "5cfa08b4aa3cc47d",
+                "fb298fbb403a8ca7"
+            ]
+        ]
+    },
+    {
+        "id": "fb298fbb403a8ca7",
+        "type": "influxdb out",
+        "z": "3eb2c389b773bafa",
+        "influxdb": "1c1a5edef41716e3",
+        "name": "InfluxDB",
+        "measurement": "humidity_dc_02",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "CIL",
+        "bucket": "dc",
+        "x": 900,
+        "y": 720,
+        "wires": []
+    },
+    {
+        "id": "5cfa08b4aa3cc47d",
+        "type": "debug",
+        "z": "3eb2c389b773bafa",
+        "name": "debug 11",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 900,
+        "y": 660,
+        "wires": []
+    },
+    {
+        "id": "ee24e787a4fd5ca9",
+        "type": "mqtt in",
+        "z": "3eb2c389b773bafa",
+        "name": "Energy_DC_ApparentPW",
+        "topic": "meraki/v1/mt/L_579838452023959405/ble/00:84:1E:8A:9D:E9/mainsApparentPower",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "aab077a9a3b984a5",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 270,
+        "y": 1160,
+        "wires": [
+            [
+                "8ee646812d64249d"
+            ]
+        ]
+    },
+    {
+        "id": "b2895e2c3ef53e1e",
+        "type": "debug",
+        "z": "3eb2c389b773bafa",
+        "name": "debug 12",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 940,
+        "y": 1360,
+        "wires": []
+    },
+    {
+        "id": "8ee646812d64249d",
+        "type": "function",
+        "z": "3eb2c389b773bafa",
+        "name": "TimeConverter",
+        "func": "let nwTime = Date.parse(RED.util.getMessageProperty(msg, 'payload.ts'));\ndelete msg.payload.ts \nmsg.payload.time = nwTime\nreturn msg;",
+        "outputs": 2,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 640,
+        "y": 1260,
+        "wires": [
+            [
+                "fb6edbf1e73b3e18"
+            ],
+            [
+                "b2895e2c3ef53e1e"
+            ]
+        ]
+    },
+    {
+        "id": "fb6edbf1e73b3e18",
+        "type": "influxdb out",
+        "z": "3eb2c389b773bafa",
+        "influxdb": "1c1a5edef41716e3",
+        "name": "InfluxDB",
+        "measurement": "Apparent_Power",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "CIL",
+        "bucket": "dc",
+        "x": 940,
+        "y": 1300,
+        "wires": []
+    },
+    {
+        "id": "327b6480aecb3ddd",
+        "type": "mqtt in",
+        "z": "3eb2c389b773bafa",
+        "name": "Energy_DC_PWFactor",
+        "topic": "meraki/v1/mt/L_579838452023959405/ble/00:84:1E:8A:9D:E9/mainsPowerFactor",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "aab077a9a3b984a5",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 280,
+        "y": 1240,
+        "wires": [
+            [
+                "863f1a4a55d53622"
+            ]
+        ]
+    },
+    {
+        "id": "da18c0776e186fcc",
+        "type": "debug",
+        "z": "3eb2c389b773bafa",
+        "name": "debug 13",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 940,
+        "y": 1520,
+        "wires": []
+    },
+    {
+        "id": "863f1a4a55d53622",
+        "type": "function",
+        "z": "3eb2c389b773bafa",
+        "name": "TimeConverter",
+        "func": "let nwTime = Date.parse(RED.util.getMessageProperty(msg, 'payload.ts'));\ndelete msg.payload.ts \nmsg.payload.time = nwTime\nreturn msg;",
+        "outputs": 2,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 640,
+        "y": 1420,
+        "wires": [
+            [
+                "66febf0b3e823f09"
+            ],
+            [
+                "da18c0776e186fcc"
+            ]
+        ]
+    },
+    {
+        "id": "66febf0b3e823f09",
+        "type": "influxdb out",
+        "z": "3eb2c389b773bafa",
+        "influxdb": "1c1a5edef41716e3",
+        "name": "InfluxDB",
+        "measurement": "Power_Factor",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "CIL",
+        "bucket": "dc",
+        "x": 940,
+        "y": 1460,
+        "wires": []
+    },
+    {
+        "id": "0a0aee68beb320ea",
+        "type": "mqtt in",
+        "z": "3eb2c389b773bafa",
+        "name": "DC_Door",
+        "topic": "meraki/v1/mt/L_579838452023959405/ble/A8:46:9D:76:75:34/door",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "aab077a9a3b984a5",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 260,
+        "y": 1540,
+        "wires": [
+            [
+                "0fa8577452c4ee58"
+            ]
+        ]
+    },
+    {
+        "id": "94a9c350533a4f3e",
+        "type": "debug",
+        "z": "3eb2c389b773bafa",
+        "name": "debug 14",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 940,
+        "y": 1640,
+        "wires": []
+    },
+    {
+        "id": "0fa8577452c4ee58",
+        "type": "function",
+        "z": "3eb2c389b773bafa",
+        "name": "TimeConverter",
+        "func": "let nwTime = Date.parse(RED.util.getMessageProperty(msg, 'payload.ts'));\ndelete msg.payload.ts \nmsg.payload.time = nwTime\nreturn msg;",
+        "outputs": 2,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 640,
+        "y": 1540,
+        "wires": [
+            [
+                "9306c6c6261b1389"
+            ],
+            [
+                "94a9c350533a4f3e"
+            ]
+        ]
+    },
+    {
+        "id": "9306c6c6261b1389",
+        "type": "influxdb out",
+        "z": "3eb2c389b773bafa",
+        "influxdb": "1c1a5edef41716e3",
+        "name": "InfluxDB",
+        "measurement": "Door",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "CIL",
+        "bucket": "dc",
+        "x": 940,
+        "y": 1580,
+        "wires": []
+    },
+    {
+        "id": "887f3e8422bbaf22",
+        "type": "influxdb out",
+        "z": "3eb2c389b773bafa",
+        "influxdb": "1c1a5edef41716e3",
+        "name": "InfluxDB",
+        "measurement": "Alerts_Data_V3",
+        "precision": "",
+        "retentionPolicy": "",
+        "database": "database",
+        "precisionV18FluxV20": "ms",
+        "retentionPolicyV18Flux": "",
+        "org": "CIL",
+        "bucket": "dc",
+        "x": 1040,
+        "y": 1860,
+        "wires": []
+    },
+    {
+        "id": "40b954a116f9c9a8",
+        "type": "http in",
+        "z": "3eb2c389b773bafa",
+        "name": "WebHook",
+        "url": "/webhook",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 240,
+        "y": 1720,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "7d8f143914523a42",
+        "type": "debug",
+        "z": "3eb2c389b773bafa",
+        "name": "debug 15",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1040,
+        "y": 1720,
+        "wires": []
+    },
+    {
+        "id": "ecfa5347025cb66f",
+        "type": "function",
+        "z": "3eb2c389b773bafa",
+        "name": "function 1",
+        "func": "let time = Date.parse(RED.util.getMessageProperty(msg, 'payload.sentAt'));\nlet data = msg.payload.alertData.triggerData\ndata.time = time\ndata.alertConfigId = parseFloat(data.alertConfigId)\nmsg.payload = data[0].trigger;\nreturn msg;",
+        "outputs": 2,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 600,
+        "y": 1860,
+        "wires": [
+            [
+                "887f3e8422bbaf22",
+                "3fe84a38519a89d3"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "3fe84a38519a89d3",
+        "type": "debug",
+        "z": "3eb2c389b773bafa",
+        "name": "debug 16",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1040,
+        "y": 1920,
+        "wires": []
+    },
+    {
+        "id": "1c1a5edef41716e3",
+        "type": "influxdb",
+        "hostname": "127.0.0.1",
+        "port": "8086",
+        "protocol": "http",
+        "database": "my_data",
+        "name": "InfluxDB",
+        "usetls": false,
+        "tls": "",
+        "influxdbVersion": "2.0",
+        "url": "http://10.7.76.60:8086",
+        "rejectUnauthorized": false
+    },
+    {
+        "id": "aab077a9a3b984a5",
+        "type": "mqtt-broker",
+        "name": "",
+        "broker": "10.7.76.60",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    }
+]
