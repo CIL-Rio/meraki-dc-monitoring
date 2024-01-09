@@ -26,12 +26,12 @@ Variações de temperatura, umidade e vazamentos de líquidos podem comprometer 
 
 ## Arquitetura
 
-A linha de sensores Meraki usa o protocolo Bluetooth BLE para transmitir os dados coletados para a nuvem Meraki. Para concretizar essa transmissão, é necessário a utilização de um gateway IoT. Este gateway pode ser uma câmera ou um Access Point Meraki com funcionalidade BLE.
-
-Nesta demonstração, as câmeras MV12 atuam como gateways IoT. As imagens coletadas pelas câmeras também são usadas para ajudar a correlacionar eventos. Um exemplo seria uma falha elétrica do tipo falta de energia em um switch, aqui representado pelos Catalyst 9300. A falta de energia pode ser causada por uma falha entre a PSU e o switch, uma falha elétrica no próprio switch ou no fornecimento de energia da PSU. No primeiro caso o mal contado pode ser provocado por ação humana, intencional ou não. Ao combinarmos as informações de vídeo analítico, o status do switch e as informações do sensor de energia da Meraki conseguimos definir onde defeito foi originado e se tem causa humana ou não.
-
-Para podermos fazer correlação dos eventos de rede, sensores e câmeras precisamos de uma base de dados comum. A base de dados escolhida para isso foi o InfluxDB, que uma base de dados para series temporais.  Os dados são enviados pela nuvem Meraki via protocolo MQTT para um broker MQTT hospedado em nosso DataCenter. O Broker MQTT utilizado é Mosquitto MQTT.  Os dados são enviados do broker para o banco de dados via NodeRed. O NodeRed é uma plataforma LowCode que permite a criação de automações simples sem a necessidade de código.
-
-Uma vez no banco de dados utilizamos o Grafana Dashboard para criar gráficos a partir dos dados coletados. A partir do Grafana os usuários podem ter uma visão instantânea dos dados dos sensores e câmeras, e usá-los para fazer correlações. 
-
+Para resolver o problema descrito acima, foi proposta a seguinte arquitetura de coleta e apresentação de dados. 
 ![Arquitetura](arch.png)
+
+As informações coletadas pelos sensores e pela nuvem Meraki são escritas em um broker MQTT e, em seguida, armazenadas no banco de dados InfluxDB. Essas informações são usadas posteriormente pelo Grafana para a apresentação dos dados. A leitura dos dados escritos no broker e a gravação no banco de dados é feita pelo NodeRed.
+
+A linha de sensores da Meraki usa o protocolo Bluetooth BLE para enviar os dados coletados para a nuvem Meraki, por meio de um gateway IoT. Este pode ser uma câmera ou um Access Point Meraki que suporte BLE. Para esta demonstração, as câmeras MV12 funcionam como gateways IoT e suas imagens também são utilizadas para auxiliar na correlação de eventos.
+
+Um exemplo de aplicação é o diagnóstico de falhas elétricas, como uma interrupção de energia em um switch Catalyst 9300. Esse tipo de falha pode ser devido a diversas causas, incluindo ação humana. Combinando as informações de vídeo analítico, status do switch e dados do sensor de energia da Meraki, é possível determinar a origem do problema.
+
