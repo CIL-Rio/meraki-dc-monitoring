@@ -1,6 +1,6 @@
 # Meraki DC Monitoring
 Meraki DC Monitoring 
-## Descrição
+## Introdução
 Variações de temperatura, umidade e vazamentos de líquidos podem comprometer a infraestrutura de um Data Center e interromper os serviços hospedados nele. Os sensores da Meraki oferecem uma visão detalhada dessas variáveis ambientais, antes inacessíveis aos times de TI. Esta demonstração tem como objetivo ampliar as funcionalidades dos sensores, fornecendo informações adicionais obtidas de câmeras, redes e plataformas de terceiros.
 
 ## Objetivos
